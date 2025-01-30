@@ -1,4 +1,4 @@
-import 'package:bookly_app/core/utils/app_images.dart';
+import 'package:bookly_app/features/splash/presentation/views/widgets/sliding_image.dart';
 import 'package:bookly_app/features/splash/presentation/views/widgets/sliding_text.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +13,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<Offset> slidingAnimation;
+  late Animation<Offset> slidingImageAnimation;
 
   @override
   void initState() {
@@ -22,7 +23,11 @@ class _SplashViewBodyState extends State<SplashViewBody>
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
 
     slidingAnimation =
-        Tween<Offset>(begin: const Offset(0, 6), end: Offset.zero)
+        Tween<Offset>(begin: const Offset(2, 0), end: Offset.zero)
+            .animate(animationController);
+
+    slidingImageAnimation =
+        Tween<Offset>(begin: const Offset(0, -2), end: Offset.zero)
             .animate(animationController);
     animationController.forward();
   }
@@ -39,7 +44,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image.asset(Assets.imagesLogo),
+        SlidingImageAnimation(slidingImageAnimation: slidingImageAnimation),
         const SizedBox(
           height: 4,
         ),

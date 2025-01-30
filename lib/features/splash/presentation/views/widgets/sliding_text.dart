@@ -11,6 +11,7 @@ class SlidingTextAnimation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
+        // i used this to rebuild the SlideTransition when the slidingAnimation change
         animation: slidingAnimation,
         builder: (context, _) {
           return SlideTransition(
