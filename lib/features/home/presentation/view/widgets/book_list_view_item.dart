@@ -21,7 +21,9 @@ class BookListViewItem extends StatelessWidget {
         child: Row(
           children: [
             CustomBookImage(
-                imageUrl: bookModel.volumeInfo.imageLinks.thumbnail),
+              imageUrl: bookModel.volumeInfo.imageLinks?.thumbnail ??
+                  'https://basecamplive.com/wp-content/uploads/2023/02/books.jpeg',
+            ),
             const SizedBox(
               width: 30,
             ),
@@ -46,6 +48,8 @@ class BookListViewItem extends StatelessWidget {
                   Text(
                     bookModel.volumeInfo.authors![0],
                     style: Styles.textStyle14,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(
                     height: 3,
@@ -56,7 +60,7 @@ class BookListViewItem extends StatelessWidget {
                         "Free",
                         style: Styles.textStyle18.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: const Color.fromARGB(255, 74, 131, 76),
                         ),
                       ),
                       const Spacer(),
