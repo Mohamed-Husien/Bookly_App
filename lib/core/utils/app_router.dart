@@ -39,7 +39,9 @@ abstract class AppRouter {
         builder: (context, state) => BlocProvider(
           create: (context) =>
               SearchBooksCubit(getIt.get<SearchBookRepoImpl>()),
-          child: const SearchView(),
+          child: SearchView(
+            bookModel: state.extra as BookModel,
+          ),
         ),
       ),
     ],
