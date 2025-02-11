@@ -14,9 +14,12 @@ class SearchBookRepoImpl implements SearchBookRepo {
       {required String category}) async {
     try {
       var data = await apiService.get(
-          endPoint:
-              'volumes?Filtering=free-ebooks&Sorting=relevance &q=subject:$category');
+          endPoint: 'volumes?Filtering=free-ebooks&q=subject:$category');
       List<BookModel> books = [];
+      if (data['totalItems'] == 0) {
+        data = await apiService.get(
+            endPoint: 'volumes?Filtering=free-ebooks&q=subject:general');
+      }
       for (var item in data['items']) {
         books.add(BookModel.fromJson(item));
       }
