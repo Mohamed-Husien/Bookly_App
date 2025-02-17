@@ -1,5 +1,5 @@
 import 'package:bookly_app/core/widgets/custom_error_widget.dart';
-import 'package:bookly_app/core/widgets/custom_loading_indicator.dart';
+import 'package:bookly_app/core/widgets/custom_loading_widget.dart';
 import 'package:bookly_app/features/home/presentation/view/widgets/book_list_view_item.dart';
 import 'package:bookly_app/features/search/presentation/manger/search_books_cubit/search_books_cubit.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +28,7 @@ class SearchResultListView extends StatelessWidget {
         } else if (state is SearchBooksFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);
         } else {
-          return const CustomLoadingIndicator();
+          return const BookListViewItemSkeleton();
         }
       },
     );
